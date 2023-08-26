@@ -175,6 +175,8 @@ System.out.println("Array Index reached maximum ");
 32
 Design and Analysis of Algorithms -21CS42- Laboratory Component
 Dept. of CSE, SIR MVIT, Bengaluru AY2022-2023
+
+
 Module2
 1. Sort a given set of n integer elements using Quick Sort method and compute its time
 complexity. Run the program for varied values of n> 5000 and record the time taken to
@@ -281,8 +283,6 @@ try{
 /* Generate Random Numbers */
 for(i=0;i<n;i++)
 35
-Design and Analysis of Algorithms -21CS42- Laboratory Component
-Dept. of CSE, SIR MVIT, Bengaluru AY2022-2023
 arr[i]=rand.nextInt(100);
 /* Print random numbers */
 System.out.println("\nthe random elements are ");
@@ -433,8 +433,7 @@ System.out.println("Array Index reached maximum ");
 }
 }
 40
-Design and Analysis of Algorithms -21CS42- Laboratory Component
-Dept. of CSE, SIR MVIT, Bengaluru AY2022-2023
+
 Output:
 Quicksort Test
 Enter the number of elements 10
@@ -462,8 +461,7 @@ The Elements After sorting
 91
 Time taken for execution is: 6316 nanoseconds
 41
-Design and Analysis of Algorithms -21CS42- Laboratory Component
-Dept. of CSE, SIR MVIT, Bengaluru AY2022-2023
+
 2. Sort a given set of n integer elements using Merge Sort method and compute its time
 complexity. Run the program for varied values of n> 5000, and record the time taken to
 sort. Plot a graph of the time taken versus n. The elements can be read from a file or can be
@@ -650,8 +648,8 @@ Time taken for execution is:21316 nanoseconds
 Note: For n=5000 to 50000 in step of 5000 note down the time in nanoseconds. Convert time in
 seconds and plot the graph with n as x axis and time as y axis.
 46
-Design and Analysis of Algorithms -21CS42- Laboratory Component
-Dept. of CSE, SIR MVIT, Bengaluru AY2022-2023
+
+
 Module 3
 1. Write & Execute C++/Java Program to solve Knapsack problem using Greedy method.
 Fractional (Continuous) Knapsack using Greedy Method
@@ -687,8 +685,7 @@ public static void knapsack(int n, int item[],float weight[], float profit[], fl
 float tp = 0,u;
 int i;
 47
-Design and Analysis of Algorithms -21CS42- Laboratory Component
-Dept. of CSE, SIR MVIT, Bengaluru AY2022-2023
+
 u = capacity;
 float x[]=new float[20];
 for (i = 0; i < n; i++)
@@ -720,8 +717,7 @@ public static void main(String[] args)
  float ratio[]=new float[20], temp;
  int item[]=new int[10];
 48
-Design and Analysis of Algorithms -21CS42- Laboratory Component
-Dept. of CSE, SIR MVIT, Bengaluru AY2022-2023
+
  Scanner in=new Scanner(System.in);
  System.out.println("\nEnter the no. of objects:- ");
  num=in.nextInt();
@@ -752,8 +748,7 @@ Dept. of CSE, SIR MVIT, Bengaluru AY2022-2023
  weight[i] = temp;
  temp = profit[j];
 49
-Design and Analysis of Algorithms -21CS42- Laboratory Component
-Dept. of CSE, SIR MVIT, Bengaluru AY2022-2023
+
  profit[j] = profit[i];
  profit[i] = temp;
 temp=item[j];

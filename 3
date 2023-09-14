@@ -1,0 +1,183 @@
+4.c 
+knapsack
+
+import java.util.Scanner;
+public class Knapsack1 {
+    private static int w[] = new int[10];
+    private static int b[] = new int[10];
+    private static int v[][] = new int[10][10];
+    private static int value[] = new int[10];
+
+    static int max(int a, int b) {
+        return (a > b) ? a : b;
+    }
+
+    static int knap(int n, int w1) {
+        for (int i = 0; i <= n; i++) {
+            for (int j = 0; j <= w1; j++) {
+                if (i == 0 || j == 0)
+                    v[i][j] = 0;
+                else if (w[i] <= j)
+                    v[i][j] = max(v[i - 1][j], value[i] + v[i - 1][j - w[i]]);
+                else
+                    v[i][j] = v[i - 1][j];
+            }
+        }
+        return v[n][w1];
+    }
+
+    static void optimal(int n, int w1) {
+        int i = n, j = w1;
+        while (i >= 1 && j >= 1) {
+            if (v[i][j] != v[i - 1][j]) {
+                System.out.println("Item: " + i);
+                b[i] = 1;
+                j = j - w[i];
+            }
+            i--;
+        }
+    }
+
+    public static void main(String[] args) {
+        int profit, w1, n;
+        Scanner sc = new Scanner(System.in);
+        System.out.println("enter the number of items:");
+        n = sc.nextInt();
+        System.out.println("enter the capacity of the knapsack:");
+        w1 = sc.nextInt();
+        System.out.println("enter the values:\n");
+        for (int i = 1; i <= n; i++)
+            value[i] = sc.nextInt();
+        System.out.println("enter the weights:");
+        for (int i = 1; i <= n; i++)
+            w[i] = sc.nextInt();
+        profit = knap(n, w1);
+        System.out.println("profit: " + profit);
+        System.out.println("\n optimal subset is:\n");
+         optimal(n, w1);
+        System.out.println("the solution vector is:");
+        for (int i = 1; i <= n; i++)
+            System.out.println(b[i]);
+    }
+}
+
+5.b hamilton cycle
+
+public class Hamiltonian {
+    final int V = 5;
+    int path[];
+
+    boolean isSafe(int v, int graph[][], int path[], int pos) {
+        if (graph[path[pos - 1]][v] == 0)
+            return false;
+        for (int i = 0; i < pos; i++)
+            if (path[i] == v)
+                return false;
+        return true;
+    }
+
+    boolean hamCycleUtil(int graph[][], int path[], int pos) {
+        if (pos == V) {
+            if (graph[path[pos - 1]][path[0]] == 1)
+                return true;
+            else
+                return false;
+        }
+
+        for (int v = 1; v < V; v++) {
+            if (isSafe(v, graph, path, pos)) {
+                path[pos] = v;
+                if (hamCycleUtil(graph, path, pos + 1) == true)
+                    return true;
+                path[pos] = -1;
+            }
+        }
+        return false;
+    }
+
+    int hamCycle(int graph[][]) {
+        path = new int[V];
+        for (int i = 0; i < V; i++)
+            path[i] = -1;
+
+        path[0] = 0;
+        if (hamCycleUtil(graph, path, 1) == false)
+            return 0;
+        printSolution(path);
+        return 1;
+    }
+
+    void printSolution(int path[]) {
+        System.out.println("Solution Exists: Following is one Hamiltonian Cycle");
+        for (int i = 0; i < V; i++)
+            System.out.print(" " + path[i] + " ");
+        System.out.println(" " + path[0] + " ");
+    }
+
+    public static void main(String args[]) {
+        Hamiltonian hamiltonian = new Hamiltonian();
+        int graph1[][] = {{0, 1, 0, 1, 0},
+                          {1, 0, 1, 1, 1},
+                          {0, 1, 0, 0, 1},
+                          {1, 1, 0, 0, 1},
+                          {0, 1, 1, 1, 0}
+        };
+        hamiltonian.hamCycle(graph1);
+        int graph2[][] = {{0, 1, 0, 1, 0},
+                          {1, 0, 1, 1, 1},
+                          {0, 1, 0, 0, 1},
+                          {1, 1, 0, 0, 0},
+                          {0, 1, 1, 0, 0}
+        };
+        hamiltonian.hamCycle(graph2);
+    }
+}
+
+1.a 
+
+import java.util.Random;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Scanner;
+import java.util.List; // Add this import
+
+public class Selsort {
+    public static void selectionSort(int[] nums) {
+        for (int i = 0; i < nums.length; i++) {
+            int min = i;
+            for (int j = i + 1; j < nums.length; j++) {
+                if (nums[j] < nums[min]) {
+                    min = j;
+                }
+            }
+            int swap = nums[i];
+            nums[i] = nums[min];
+            nums[min] = swap;
+        }
+    }
+
+    public static void main(String[] args) {
+        int[] array = new int[10000];
+        for (int i = 0; i < array.length; i++) {
+            array[i] = i;
+        }
+        // Shuffle array
+        List<Integer> list = Arrays.asList(Arrays.stream(array).boxed().toArray(Integer[]::new)); // Correct the shuffle
+
+        // Print shuffled collection
+        System.out.println("Unsorted Array List is:");
+        System.out.println(list);
+
+        long startTime = System.nanoTime();
+        System.out.println("Selection Sort");
+        selectionSort(array);
+        long endTime = System.nanoTime();
+
+        // Print sorted collection
+        System.out.println("The Sorted Array is:");
+        System.out.println(Arrays.toString(array));
+
+        // Print runtime in seconds
+        System.out.println("Selection Sort runtime: " + (endTime - startTime) / 1000000000.0 + " seconds");
+    }
+}
